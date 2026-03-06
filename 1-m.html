@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Gaming | Abhiyukth Vlogs Arena</title>
+
+    <style>
+        /* --- CSS Reset & Variables --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #00ff88; /* Neon Green */
+            --secondary-color: #7000ff; /* Purple */
+            --bg-dark: #121212;
+            --bg-card: #1e1e1e;
+            --text-light: #f4f4f4;
+            --text-gray: #aaaaaa;
+            --live-red: #ff0000;
+        }
+
+        html {
+            scroll-behavior: smooth; /* Makes clicking "Live" scroll smoothly */
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* --- Header --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background-color: rgba(18, 18, 18, 0.95);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #333;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+            text-shadow: 0 0 10px var(--primary-color);
+        }
+
+        .cta-btn {
+            background: var(--secondary-color);
+            padding: 10px 25px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .cta-btn:hover {
+            background: #8a2be2;
+            transform: translateY(-2px);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .hero span { color: var(--primary-color); }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* --- Live Section --- */
+        .live-section {
+            padding: 80px 5%;
+            background: radial-gradient(circle at center, #1e1e1e, #121212);
+            text-align: center;
+        }
+
+        .live-badge {
+            background: var(--live-red);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-bottom: 15px;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0px rgba(255, 0, 0, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(255, 0, 0, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0px rgba(255, 0, 0, 0); }
+        }
+
+        .live-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* --- Video Gallery Section --- */
+        .video-section {
+            padding: 60px 5%;
+            background-color: #181818;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+        }
+        
+        .section-title span {
+            color: var(--secondary-color);
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+        }
+
+        .video-card {
+            background: var(--bg-card);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #333;
+            transition: transform 0.3s;
+        }
+
+        .video-card:hover {
+            transform: scale(1.02);
+            border-color: var(--primary-color);
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-info {
+            padding: 15px;
+        }
+
+        .video-info h3 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .channel-link {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+        
+        .channel-link:hover {
+            color: var(--primary-color);
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: #0a0a0a;
+            padding: 40px 5%;
+            text-align: center;
+            border-top: 1px solid #333;
+            color: var(--text-gray);
+        }
+
+        /* --- Mobile Responsive --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            nav { display: none; }
+            .video-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Abhiyukth Arena</div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#videos">Videos</a></li>
+                <li><a href="#live">Live</a></li>
+                <li><a href="https://www.youtube.com/@abhiyukthvlogs" target="_blank" class="cta-btn">Subscribe</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Watch Ultimate <br> <span>BGMI Gameplay</span></h1>
+            <p>Welcome to the official fan hub for Abhiyukth Vlogs. Catch the latest streams, insane clutches, and road to conqueror moments right here.</p>
+            <a href="#live" class="cta-btn" style="display: inline-block; padding: 15px 40px;">Watch Live</a>
+        </div>
+    </section>
+
+    <section id="live" class="live-section">
+        <div class="live-container">
+            <div class="live-badge">● LIVE STREAM</div>
+            <h2 class="section-title">Current <span>Match</span></h2>
+            <div class="video-card" style="border-color: var(--primary-color);">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/4vlJ5_qt9Q8" 
+                            title="Live Stream" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="video-info">
+                    <h3>🔴 Abhiyukth Vlogs Live Arena</h3>
+                    <p style="color: var(--text-gray);">Live BGMI Gameplay - Join the conquest!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="videos" class="video-section">
+        <h2 class="section-title">Latest <span>Streams</span></h2>
+        <div class="video-grid">
+            
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/2iQD9Ju4cbU" title="Road to Conqueror" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h3>Road to Conqueror: Power Varatte Makkale! </h3>
+                    <a href="https://www.youtube.com/@abhiyukthvlogs" target="_blank" class="channel-link">Abhiyukth Vlogs</a>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/k2XBk5ep0f8" title="BGMI Malayalam Stream" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h3> ABHIYUKTH VLOGS LIVE | BGMI Malayalam</h3>
+                    <a href="https://www.youtube.com/@abhiyukthvlogs" target="_blank" class="channel-link">Abhiyukth Vlogs</a>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/OEjHTyGYO00" title="Onam BGMI Challenge" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h3>Onam BGMI Challenge LIVE!</h3>
+                    <a href="https://www.youtube.com/@abhiyukthvlogs" target="_blank" class="channel-link">Abhiyukth Vlogs</a>
+                </div>
+            </div>
+
+             <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/tBAxTlwnDlo" title="BGMI Squad Play" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h3>Malayalam And Hindi BGMI : Squad Play</h3>
+                    <a href="https://www.youtube.com/@abhiyukthvlogs" target="_blank" class="channel-link">Abhiyukth Vlogs</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Gaming Fan Site. Content courtesy of <a href="https://www.youtube.com/@abhiyukthvlogs" style="color: var(--primary-color);">Abhiyukth Vlogs</a>.</p>
+    </footer>
+
+</body>
+</html>
